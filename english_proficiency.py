@@ -47,6 +47,7 @@ def compute(target_funcs, base_cases):
     for func in GraphDependency.get_dependency_clausure(*target_funcs, include_requested=True):
         dependencies = GraphDependency.dependency_graph.get(func)
         if dependencies:
+            # Here I use the fact that each function depends on only one other function
             outputs[func] = func(outputs[dependencies[0]])
         else:
             outputs[func] = func(base_cases[func])
