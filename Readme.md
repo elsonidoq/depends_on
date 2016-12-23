@@ -1,7 +1,7 @@
 # About this code
 These are a helper class and a helper function that I found really usefull
 
-The idea is to easyly express dependencies between pieces of code and then
+The idea is to easily express dependencies between pieces of code and then
 be able to exploit that capability to create simpler architectures
 
 The `depends_on.py` file contains the implementation of `GraphDependency`
