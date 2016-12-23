@@ -7,12 +7,12 @@ be able to exploit that capability to create simpler architectures
 The `depends_on.py` file contains the implementation of `GraphDependency`
 and the `depends_on` function.
 
-The `english_proficiency.py` exhibits one example a feature extraction 
+The `english_proficiency.py` file exhibits one example of a feature extraction 
 heuristic I coded one afternoon 
 (Thanks [@slezica](https://github.com/slezica)!) to try to get a sense
 of some english proficiency.
 
-The `pipeline.py` exhibits another example to build a pipeline where 
+The `pipeline.py` file exhibits another example to build a pipeline where 
 stages depends with one another.
  
  In both cases there's a computational graph to be solved, this implementation
