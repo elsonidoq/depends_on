@@ -23,6 +23,10 @@ stages depends with one another.
  
 # How to run it
  
-The code is self contained, you shouldn't need to install anything. 
-However, if you want to run the `english_proficiency.py` example
+~~The code is self contained, you shouldn't need to install anything.~~
+You do need to install [networkx](https://networkx.github.io/)(
+`pip install networkx`)
+
+
+~~However~~ Additionaly, if you want to run the `english_proficiency.py` example
 you should download [this](http://norvig.com/ngrams/count_1w.txt) file
