@@ -57,19 +57,6 @@ def compute(target_funcs, base_cases):
     return vector
 
 
-class dict_cache(object):
-    def __init__(self, func):
-        self.func = func
-        self.cache = {}
-
-    def __call__(self, **kwargs):
-        override_cache = kwargs.pop('override_cache', False)
-
-        key = tuple(sorted(kwargs.iteritems()))
-        if key not in self.cache or override_cache:
-            self.cache[key] = self.func(**kwargs)
-        return self.cache[key]
-
 def base_case(txt):
     return txt
 
@@ -197,6 +184,20 @@ def remove_stopwords(tok_sents):
     return res
 
 
+class dict_cache(object):
+    def __init__(self, func):
+        self.func = func
+        self.cache = {}
+
+    def __call__(self, **kwargs):
+        override_cache = kwargs.pop('override_cache', False)
+
+        key = tuple(sorted(kwargs.iteritems()))
+        if key not in self.cache or override_cache:
+            self.cache[key] = self.func(**kwargs)
+        return self.cache[key]
+
+
 @dict_cache
 def load_vocab():
     vocab = {}
@@ -235,7 +236,6 @@ def min_word_prob(word_probs):
 @depends_on(word_probs)
 def max_word_prob(word_probs):
     return mean(word_probs)
-
 
 
 @depends_on(word_probs)

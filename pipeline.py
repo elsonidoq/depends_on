@@ -23,5 +23,6 @@ class AndTheFinalAlgorithmIs(GraphDependency): pass
 
 
 for klass in AndTheFinalAlgorithmIs, SomeCompoundProcess, SomeMixedProcess:
+    print
     print "Dependencies for {}".format(klass)
     print GraphDependency.get_dependency_clausure(klass)
