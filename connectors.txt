@@ -1,0 +1,106 @@
+firstly
+secondly
+to begin
+to start with
+to conclude with
+in the first place
+in the second place
+next
+finally
+last
+lastly
+to conclude
+last but not least
+to summarise
+to sum up
+adding
+also
+too
+then
+furthermore
+moreover
+in addition to that
+above all
+what is more
+additionally
+comparing
+equally
+likewise
+similarly
+in the same 
+a different way
+compared to
+compared with
+in comparison with
+as \w+ as
+both \w+( \w+)* and
+concluding
+all in all
+in conclusion
+I draw the conclusion
+arrive at the conclusion that
+I conclude
+consequently
+exemplifying
+for example 
+for instance
+that is
+that is to say
+such as
+namely
+result
+consequently
+hence
+therefore
+thus
+as a result
+because of that
+that's why
+reformulating
+to put it another way
+in other words
+alternative
+on the one hand
+on the other hand
+contrasting
+on the contrary
+in contrast to that
+but
+yet
+however
+nevertheless
+whereas
+while
+neither \w+( \w+)* nor
+concession
+besides
+still
+though
+in spite of that
+despite that
+admittedly
+unless
+In my view
+To my mind
+In my opinion
+As I see it,
+I think that
+I believe that
+I have come to the conclusion that
+I would not say that
+therefore I cannot agree with
+I am doubtful whether
+I am certain that
+It seems to me that
+Another argument is that
+As far as I am concerned
+One reason is that
+I would say that
+As we have seen
+As we know from
+As a result
+In short
+With regard to
+It is for this reason that I think
+I am convinced that
+I feel that
