@@ -1,4 +1,7 @@
 import os
+
+from math import log
+
 from depends_on import GraphDependency, depends_on
 from collections import defaultdict
 from nltk.stem.porter import PorterStemmer
@@ -22,7 +25,6 @@ def get_features(text):
         min_sent_length,
         avg_sent_length,
         in_vocab_words,
-        mad_word_prob,
         min_word_prob,
         max_word_prob,
         avg_connectors,
@@ -111,9 +113,13 @@ def n_punct_per_sent(sents):
     return l
 
 
+def mean(l):
+    return float(sum(l)) / len(l)
+
+
 @depends_on(n_punct_per_sent)
 def avg_n_punct_per_sent(puncts):
-    return float(sum(puncts)) / len(puncts)
+    return mean(puncts)
 
 
 @depends_on(n_punct_per_sent)
@@ -132,7 +138,7 @@ def avg_verbs(sents):
     for sent in sents:
         n_verbs = len([e for e, tag in sent if tag[0] == 'V'])
         verbs.append(n_verbs / float(len(sent)))
-    return np.mean(verbs)
+    return mean(verbs)
 
 
 @depends_on(tokenize_sents)
@@ -163,7 +169,7 @@ def yule(tok_sents):
 def type_token_ratio(tok_sents):
     n_tokens = float(sum(map(len, tok_sents)))
     res = len(set(chain(*tok_sents))) / n_tokens
-    normalization_constant = 10 / np.log(n_tokens * 4)
+    normalization_constant = 10 / log(n_tokens * 4)
     return res / normalization_constant
 
 
@@ -179,7 +185,7 @@ def min_sent_length(lengths):
 
 @depends_on(sent_lengths)
 def avg_sent_length(lengths):
-    return np.mean(lengths)
+    return mean(lengths)
 
 
 @depends_on(tokenize_sents)
@@ -216,7 +222,7 @@ def in_vocab_words(tok_sents):
 @depends_on(remove_stopwords)
 def word_probs(tok_sents):
     vocab, _ = load_vocab()
-    return [np.log(vocab[word]) for word in chain(*tok_sents) if word in vocab]
+    return [log(vocab[word]) for word in chain(*tok_sents) if word in vocab]
 
 
 @depends_on(word_probs)
@@ -227,17 +233,13 @@ def min_word_prob(word_probs):
 
 @depends_on(word_probs)
 def max_word_prob(word_probs):
-    return np.mean(word_probs)
+    return mean(word_probs)
 
-
-@depends_on(word_probs)
-def mad_word_prob(word_probs):
-    return mad(word_probs)
 
 
 @depends_on(word_probs)
 def avg_word_prob(word_probs):
-    return np.mean(word_probs)
+    return mean(word_probs)
 
 
 def load_connectors():
@@ -256,4 +258,4 @@ def avg_connectors(sents):
     for sent in sents:
         has_any = any([p.search(sent) is not None for p in connectors.itervalues()])
         l.append(has_any)
-    return np.mean(l)
+    return mean(l)
