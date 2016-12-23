@@ -1,14 +1,10 @@
 import os
-from statsmodels.robust import mad
-from planck.db.helpers import dict_cache
-from planck.predictors.base_predictor import GraphDependency
+from depends_on import GraphDependency, depends_on
 from collections import defaultdict
-import numpy as np
 from nltk.stem.porter import PorterStemmer
 from itertools import chain, groupby
 from nltk import sent_tokenize, word_tokenize
 from nltk.corpus import stopwords
-from planck.predictors.base_predictor import depends_on
 import re
 from nltk import pos_tag
 
@@ -58,6 +54,19 @@ def compute(target_funcs, base_cases):
     return vector
 
 
+class dict_cache(object):
+    def __init__(self, func):
+        self.func = func
+        self.cache = {}
+
+    def __call__(self, **kwargs):
+        override_cache = kwargs.pop('override_cache', False)
+
+        key = tuple(sorted(kwargs.iteritems()))
+        if key not in self.cache or override_cache:
+            self.cache[key] = self.func(**kwargs)
+        return self.cache[key]
+
 def base_case(txt):
     return txt
 
@@ -104,7 +113,7 @@ def n_punct_per_sent(sents):
 
 @depends_on(n_punct_per_sent)
 def avg_n_punct_per_sent(puncts):
-    return np.mean(puncts)
+    return float(sum(puncts)) / len(puncts)
 
 
 @depends_on(n_punct_per_sent)

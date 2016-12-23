@@ -29,4 +29,6 @@ You do need to install [networkx](https://networkx.github.io/)(
 
 
 ~~However~~ Additionaly, if you want to run the `english_proficiency.py` example
-you should download [this](http://norvig.com/ngrams/count_1w.txt) file
+you should download [this](http://norvig.com/ngrams/count_1w.txt) file,
+install the `nltk` package and download the stopwords 
+(`import nltk; nltk.download("stopwords")`)
